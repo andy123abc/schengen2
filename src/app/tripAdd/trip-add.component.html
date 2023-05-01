@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">Add New Trip</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <label for="formNewTrip" class="form-label">New Trip Name (optional)</label>
+                <input type="text" class="form-control" id="formNewTrip" 
+                    [(ngModel)]="trip.name">
+            </div>
+            <div class="col">
+                <label for="formNewArrival" class="form-label">Arrival Date</label>
+                <input type="date" class="form-control" id="formNewArrival"
+                [(ngModel)]="startDateString">
+            </div>
+            <div class="col">
+                <label for="formNewDeparture" class="form-label">Departure Date</label>
+                <input type="date" class="form-control" id="formNewDeparture"
+                [(ngModel)]="endDateString">
+            </div>
+            <div class="col">
+                <br>
+                <input class="btn btn-primary" type="submit" value="Add New Trip"
+                [disabled]="!canAddTrip(startDateString, endDateString)"
+                (click)="addTrip(trip, startDateString, endDateString)">
+            </div>
+        </div>
+        <div class="row" *ngIf="errorMessage.length > 0">
+            <span class="small text-danger">{{errorMessage}}</span>
+        </div>
+    </div>
+</div>

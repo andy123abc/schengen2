@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        Trips into the Schengen area <!--TODO: Add Info about Days-->
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let trip of trips">
+                <div class="row">
+                    <div class="col">{{trip.name}}</div>
+                    <div class="col">{{trip.startDate | utcDate}}</div>
+                    <div class="col">{{trip.endDate | utcDate}}</div>
+                    <div class="col">Days: {{trip.days}}</div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger btn-sm"
+                        (click)="removeTrip.emit(trip)"
+                        title="Remove trip"
+                            ><fa-icon icon="trash"></fa-icon></button>    
+                        </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card-footer text-muted" *ngIf="trips.length > 0">
+        Trips: {{trips.length}}, <a href="javascript: void(0);" (click)="removeAll()">Remove All (start over)</a>
+    </div>
+</div>
