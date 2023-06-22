@@ -1,4 +1,4 @@
-<div class="card">
+`<div class="card">
     <div class="card-header">Add New Trip</div>
     <div class="card-body">
         <div class="row">
@@ -8,20 +8,19 @@
                     [(ngModel)]="trip.name">
             </div>
             <div class="col">
-                <label for="formNewArrival" class="form-label">Arrival Date</label>
-                <input type="date" class="form-control" id="formNewArrival"
-                [(ngModel)]="startDateString">
-            </div>
-            <div class="col">
-                <label for="formNewDeparture" class="form-label">Departure Date</label>
-                <input type="date" class="form-control" id="formNewDeparture"
-                [(ngModel)]="endDateString">
+                <label for="formNewTripDates" class="form-label">Arrival and Departure Dates</label>
+                <input type="text" id="formNewTripDates"
+                placeholder="Click to add trip dates"
+                class="form-control"
+                bsDaterangepicker
+                [(ngModel)]="dateRange" 
+                [bsConfig]="{ rangeInputFormat: 'DD MMM YYYY', containerClass: 'theme-blue', isAnimated: true }">
             </div>
             <div class="col">
                 <br>
                 <input class="btn btn-primary" type="submit" value="Add New Trip"
-                [disabled]="!canAddTrip(startDateString, endDateString)"
-                (click)="addTrip(trip, startDateString, endDateString)">
+                [disabled]="!canAddTrip(dateRange)"
+                (click)="addTrip(trip, dateRange)">
             </div>
         </div>
         <div class="row" *ngIf="errorMessage.length > 0">
