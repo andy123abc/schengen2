@@ -1,8 +1,9 @@
+import { DateTime } from 'luxon';
 export interface IDate {
-    date: Date;
+    date: DateTime;
     tripName: string;
     isInSchengen: boolean;
     balance: number;
-    date180Future: Date;
-    date180Past: Date;
+    date180Future: DateTime;
+    date180Past: DateTime;
 }

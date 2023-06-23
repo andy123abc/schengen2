@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BalanceComponent } from './balance/balance.component';
-import { UtcDate } from './shared/utc-date.pipe';
 import { TripAddComponent } from './tripAdd/trip-add.component';
 import { TripsComponent } from './trips/trips.component';
 import {
@@ -20,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TripAddComponent,
     TripsComponent,
     BalanceComponent,
-    UtcDate,
   ],
   imports: [BrowserModule, FormsModule, FontAwesomeModule, BsDatepickerModule.forRoot(), BrowserAnimationsModule],
   providers: [],
