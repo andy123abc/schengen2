@@ -7,8 +7,8 @@
             <li class="list-group-item" *ngFor="let trip of trips">
                 <div class="row">
                     <div class="col">{{trip.name}}</div>
-                    <div class="col">{{trip.startDate | utcDate}}</div>
-                    <div class="col">{{trip.endDate | utcDate}}</div>
+                    <div class="col">{{trip.startDate.toFormat('dd MMM yyyy')}}</div>
+                    <div class="col">{{trip.endDate.toFormat('dd MMM yyyy')}}</div>
                     <div class="col">Days: {{trip.days}}</div>
                     <div class="col">
                         <button type="button" class="btn btn-danger btn-sm"

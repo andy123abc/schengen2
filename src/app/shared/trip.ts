@@ -1,6 +1,7 @@
+import { DateTime } from 'luxon';
 export interface ITrip {
     name: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: DateTime;
+    endDate: DateTime;
     days: number;
 }
