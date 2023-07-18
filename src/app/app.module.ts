@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BalanceComponent } from './balance/balance.component';
 import { TripAddComponent } from './tripAdd/trip-add.component';
 import { TripsComponent } from './trips/trips.component';
-import {
-  FaIconLibrary,
-  FontAwesomeModule,
-} from '@fortawesome/angular-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -20,12 +18,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TripsComponent,
     BalanceComponent,
   ],
-  imports: [BrowserModule, FormsModule, FontAwesomeModule, BsDatepickerModule.forRoot(), BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(library: FaIconLibrary) {
-    library.addIcons(faTrash);
-  }
-}
+export class AppModule {}
