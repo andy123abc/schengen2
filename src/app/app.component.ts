@@ -3,6 +3,7 @@ import { TripService } from './core/trip.service';
 import { IDate } from './shared/date';
 import { ITrip } from './shared/trip';
 import { DateTime } from 'luxon';
+import { IInput } from './shared/input';
 
 @Component({
   selector: 'sh-root',
@@ -12,8 +13,43 @@ import { DateTime } from 'luxon';
 export class AppComponent implements OnInit {
   trips: ITrip[] = [];
   dates: IDate[] = [];
+ 
+
+  //Initialize and Config
+  constructor(private tripService: TripService) {}
+
+  ngOnInit(): void {
+    // Prepopulate with sample trips, good for testing
+
+    this.tripService.getTrips().subscribe({
+      next: (inputs) => {
+        this.trips = this.convertInputToTrips(inputs);
+        this.calculate();
+      },
+      error: (err) => console.log(err),
+    });
+  }
 
   //methods
+  convertInputToTrips(inputs: IInput[]): ITrip[] {
+    let trips: ITrip[] = [];
+    //TODO: make example a parameter
+    for (let input of inputs.filter((f) => f.example == 4)) {
+      let trip: ITrip = {
+        name: input.name,
+        startDate: DateTime.fromFormat(input.startDate, 'yyyy-MM-dd', {
+          zone: 'utc',
+        }),
+        endDate: DateTime.fromFormat(input.endDate, 'yyyy-MM-dd', {
+          zone: 'utc',
+        }),
+        days: 0,
+      };
+      trips.push(trip);
+    }
+    return trips;
+  }
+
   addTrip(newTrip: ITrip) {
     this.trips.push(newTrip);
     this.calculate();
@@ -109,13 +145,5 @@ export class AppComponent implements OnInit {
       this.dates.push(createDate(current, '', false, this.dates));
       current = current.plus({ days: 1 });
     }
-  }
-
-  //Initialize and Config
-  constructor(private tripService: TripService) {}
-
-  ngOnInit(): void {
-    this.trips = this.tripService.getTrips(); //Prepopulate with sample trips, good for testing
-    this.calculate();
   }
 }

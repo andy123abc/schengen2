@@ -1,0 +1,14 @@
+[
+    { "example":1, "name":"One Trip Test", "startDate":"2023-01-01","endDate":"2023-01-10"},
+
+    { "example":2, "name":"Milan trip 1", "startDate":"2023-01-01","endDate":"2023-01-10"},
+    { "example":2, "name":"Barcelona trip 2", "startDate":"2023-02-01","endDate":"2023-02-10"},
+    
+    { "example":3, "name":"Long trip", "startDate":"2023-01-01","endDate":"2023-04-01"},
+    
+    { "example":4, "name":"Spain", "startDate":"2022-11-08","endDate":"2022-12-01"},
+    { "example":4, "name":"Portugal", "startDate":"2023-01-31","endDate":"2023-03-30"},
+    { "example":4, "name":"Italy", "startDate":"2023-06-12","endDate":"2023-06-20"},
+    { "example":4, "name":"Eastern Europe", "startDate":"2023-07-16","endDate":"2023-09-30"},
+    { "example":4, "name":"Iceland", "startDate":"2023-12-09","endDate":"2023-12-21"}
+]
