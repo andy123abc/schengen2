@@ -5,7 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sh-addTrip',
-templateUrl: './trip-add.component.html',
+  templateUrl: './trip-add.component.html',
 })
 export class TripAddComponent {
   dateRange = new FormGroup({
@@ -28,11 +28,20 @@ export class TripAddComponent {
     this.errorMessage = ''; //reset error message
 
     //Check if there are values in start and end date
-    if (!this.dateRange.controls.start.valid || this.dateRange.controls.start.value === null ||
-      !this.dateRange.controls.end.valid || this.dateRange.controls.end.value === null) return false;
+    if (
+      !this.dateRange.controls.start.valid ||
+      this.dateRange.controls.start.value === null ||
+      !this.dateRange.controls.end.valid ||
+      this.dateRange.controls.end.value === null
+    )
+      return false;
 
-    const startDate: DateTime = this.convertToDateTime(this.dateRange.controls.start.value);
-    const endDate: DateTime = this.convertToDateTime(this.dateRange.controls.end.value);
+    const startDate: DateTime = this.convertToDateTime(
+      this.dateRange.controls.start.value
+    );
+    const endDate: DateTime = this.convertToDateTime(
+      this.dateRange.controls.end.value
+    );
     //Check if arrival is after departure (can't happen unless time machine)
     if (startDate > endDate) {
       this.errorMessage = 'Departure date cannot be before arrival date';
@@ -54,16 +63,14 @@ export class TripAddComponent {
     return true; //no issues, can add trip
   }
 
-  //helper class
-  convertToDateTime(date: Date|null): DateTime {
-    if (date == null) return DateTime.utc(0);
-    return DateTime.utc(date.getFullYear(), date.getMonth() + 1, date.getDate());
-  }
-
   addTrip(): void {
     //converting the date in a string format to a Date format
-    this.trip.startDate = this.convertToDateTime(this.dateRange.controls.start.value);
-    this.trip.endDate = this.convertToDateTime(this.dateRange.controls.end.value);
+    this.trip.startDate = this.convertToDateTime(
+      this.dateRange.controls.start.value
+    );
+    this.trip.endDate = this.convertToDateTime(
+      this.dateRange.controls.end.value
+    );
 
     //Sending the date to the parent
     this.tripAdded.emit(this.trip);
@@ -76,5 +83,15 @@ export class TripAddComponent {
       endDate: DateTime.utc(0),
       days: 0,
     };
+  }
+
+  //helper class
+  convertToDateTime(date: Date | null): DateTime {
+    if (date == null) return DateTime.utc(0);
+    return DateTime.utc(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate()
+    );
   }
 }
